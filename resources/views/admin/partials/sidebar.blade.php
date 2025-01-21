@@ -2,7 +2,7 @@
 
     <div class="sidebar-brand">
 
-      <a href="./index.html" class="brand-link">
+      <a href="{{ route('dashboard') }}" class="brand-link">
 
         {{-- <img
           src="../../dist/assets/img/AdminLTELogo.png"
@@ -10,7 +10,7 @@
           class="brand-image opacity-75 shadow"
         /> --}}
 
-        <span class="brand-text fw-light">{{ config('app.name', 'Laravel') }}</span>
+        <span class="brand-text fw-light">{{ config('adminlte.panel_name', 'Laravel') }}</span>
 
       </a>
 
