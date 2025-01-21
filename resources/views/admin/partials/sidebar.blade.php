@@ -24,12 +24,46 @@
           role="menu"
           data-accordion="false"
         >
-          <li class="nav-item  {{  request()->routeIs('dashboard') ? 'menu-open' : '' }}">
-            <a href="{{ route('dashboard') }}" class="nav-link">
-                <i class="nav-icon bi bi-speedometer"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
+
+        @foreach ($menuItems as $item)
+
+            @if (isset($item['submenu']) && count($item['submenu']) > 0)
+
+                @php
+                    $hasActiveChild = collect($item['submenu'])->contains(function ($sub_item) {
+                        return request()->routeIs($sub_item['route_name']);
+                    });
+                @endphp
+
+                <li class="nav-item {{ $hasActiveChild ? " menu-open" : "" }}">
+                    <a href="#" class="nav-link ">
+                    <i class="nav-icon {{ $item['icon'] }}"></i>
+                    <p>
+                        {{ $item['name'] }}
+                        <i class="nav-arrow bi bi-chevron-right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @foreach ($item['submenu'] as $sub_item)
+                            <li class="nav-item">
+                                <a href="{{ route($sub_item['route_name']) }}" class="nav-link {{  request()->routeIs( $sub_item['route_name'] ) ? 'active' : '' }}">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>{{ $sub_item['name'] }}</p>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+            @else
+                <li class="nav-item  {{  request()->routeIs( $item['route_name'] ) ? 'menu-open' : '' }}">
+                    <a href="{{ route($item['route_name']) }}" class="nav-link">
+                        <i class="nav-icon {{ $item['icon'] }}"></i>
+                    <p>{{ $item['name'] }}</p>
+                    </a>
+                </li>
+            @endif
+
+        @endforeach
 
         </ul>
 
