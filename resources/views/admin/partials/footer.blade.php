@@ -7,6 +7,6 @@
         Copyright &copy; {{ config('adminlte.panel_copyright_year') }}&nbsp;
       <a href="{{ config('adminlte.panel_url', 'http://127.0.0.1:8000/') }}" class="text-decoration-none">{{ config('adminlte.panel_name', 'Laravel') }}</a>.
     </strong>
-    All rights reserved.
+    {{ __('All rights reserved.') }}
     <!--end::Copyright-->
 </footer>
