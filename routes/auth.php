@@ -13,11 +13,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
 
-    Route::redirect('register', 'login');
-    // Route::get('register', [RegisteredUserController::class, 'create'])
-        // ->name('register');
+    Route::redirect('/', '/login')->name('home');
 
-    // Route::post('register', [RegisteredUserController::class, 'store']);
+
+    if (config('adminlte.login.registration')){
+        Route::get('register', [RegisteredUserController::class, 'create'])
+        ->name('register');
+
+        Route::post('register', [RegisteredUserController::class, 'store']);
+    } else {
+        Route::redirect('register', 'login')->name('register');
+    }
+
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');

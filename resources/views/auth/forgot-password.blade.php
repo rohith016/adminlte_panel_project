@@ -1,25 +1,34 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
+
+@extends('admin.layouts.app-auth')
+
+@section('title', 'Admin Login')
+
+@section('content')
+
+<div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+        </p>
+      <form action="{{ route('password.email') }}" method="post">
         @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="input-group mb-4">
+          <input type="email"  id="email" class="form-control" name="email"  value="{{ old('email') }}" placeholder="Email" required />
+          <div class="input-group-text"><span class="bi bi-envelope"></span></div>
+          <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+          <div class="col-12">
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-dark">{{ __('Email Password Reset Link') }}</button>
+            </div>
+          </div>
+          <!-- /.col -->
+        </form>
+    </div>
+    <!--end::Row-->
+</div>
+
+@endsection
+
+

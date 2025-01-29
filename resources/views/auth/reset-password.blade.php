@@ -1,39 +1,49 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
+
+@extends('admin.layouts.app-auth')
+
+@section('title', 'Admin Login')
+
+@section('content')
+
+<div class="card">
+    <div class="card-body login-card-body">
+
+      <form action="{{ route('password.store') }}" method="post">
         @csrf
 
-        <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
+
+        <div class="input-group mb-4">
+            <input type="email"  id="email" class="form-control" name="email"  value="{{ old('email') }}" placeholder="Password" required />
+            <div class="input-group-text"><span class="bi bi-envelope"></span></div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
+        <div class="input-group mb-4">
+          <input type="password"  id="password" class="form-control" name="password"  value="{{ old('password') }}" placeholder="Password" required />
+          <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
+          <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
+        <div class="input-group mb-4">
+            <input type="password"  id="password_confirmation" class="form-control" name="password_confirmation"  value="{{ old('password_confirmation') }}" placeholder="Confirm Password" required />
+            <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
+        <div class="col-12">
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-dark">{{ __('Reset Password') }}</button>
+            </div>
         </div>
-    </form>
-</x-guest-layout>
+          <!-- /.col -->
+        </form>
+    </div>
+    <!--end::Row-->
+</div>
+
+
+@endsection
+
