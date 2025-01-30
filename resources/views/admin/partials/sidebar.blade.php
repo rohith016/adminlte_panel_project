@@ -2,7 +2,7 @@
 
     <div class="sidebar-brand">
 
-      <a href="{{ route('dashboard') }}" class="brand-link">
+      <a href="{{ route('dashboard.index') }}" class="brand-link">
 
         {{-- <img
           src="../../dist/assets/img/AdminLTELogo.png"
@@ -55,7 +55,11 @@
                     </ul>
                 </li>
             @else
-                <li class="nav-item  {{  request()->routeIs( $item['route_name'] ) ? 'menu-open' : '' }}">
+                @php
+                    $routeName =  explode(".", $item['route_name'])[0];
+                    $mainRouteNameGroup = $routeName . ".*";
+                @endphp
+                <li class="nav-item  {{  request()->routeIs( $mainRouteNameGroup ) ? 'menu-open' : '' }}">
                     <a href="{{ route($item['route_name']) }}" class="nav-link">
                         <i class="nav-icon {{ $item['icon'] }}"></i>
                     <p>{{ $item['name'] }}</p>

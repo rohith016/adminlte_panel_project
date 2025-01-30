@@ -22,7 +22,7 @@ class MenuServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('admin.partials.sidebar', function ($view) {
-            if (config('adminlte.menu_source') == "file") {
+            if (config('adminlte.menu_source') == "config") {
                 $view->with('menuItems', config('adminlte.menu'));
             } else if (config('adminlte.menu_source') == "database") {
                 $view->with('menuItems', Menu::with('submenu')

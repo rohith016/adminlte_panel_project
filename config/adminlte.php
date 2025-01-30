@@ -53,7 +53,7 @@ return [
     | the application so that it's available within Artisan commands.
     | type = config | database
     */
-    "menu_source" => "database",
+    "menu_source" => "config",
     /*
     |--------------------------------------------------------------------------
     | Admin Application Menus
@@ -68,21 +68,22 @@ return [
         [
             'name' => 'Dashboard',
             'url' => '/dashboard',
-            'route_name' => 'dashboard',
+            'route_name' => 'dashboard.index',
             'icon' => 'bi bi-speedometer',
         ],
-        // [
-        //     'name' => 'Users',
-        //     'url' => '/users',
-        //     'icon' => 'bi bi-people',
-        //     'submenu' => [
-        //         [
-        //             'name' => 'All Users',
-        //             'url' => '/users',
-        //             'route_name' => 'users.index'
-        //         ]
-        //     ],
-        // ],
+        [
+            'name' => 'Users',
+            'url' => '/users',
+            'icon' => 'bi bi-people',
+            'route_name' => 'users.index',
+            // 'submenu' => [
+            //     [
+            //         'name' => 'All Users',
+            //         'url' => '/users',
+            //         'route_name' => 'users.index'
+            //     ]
+            // ],
+        ],
         // [
         //     'name' => 'Settings',
         //     'url' => '/settings',
