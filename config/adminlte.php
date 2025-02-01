@@ -68,7 +68,7 @@ return [
         [
             'name' => 'Dashboard',
             'url' => '/dashboard',
-            'route_name' => 'dashboard.index',
+            'route_name' => 'dashboard',
             'icon' => 'bi bi-speedometer',
         ],
         [
@@ -105,10 +105,10 @@ return [
 
     "login" => [
         "social" => [
-            "fb" => false,
-            "google" => false
+            "fb" => true,
+            "google" => true
         ],
-        "registration" => false
+        "registration" => true
     ],
 
 ];

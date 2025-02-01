@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 
 Route::get('/admin', function () {
     return view('admin.pages.dashboard.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard.index');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
